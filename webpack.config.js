@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const webpack = require('webpack');
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 
 module.exports = {
@@ -11,6 +10,10 @@ module.exports = {
     devtool: 'inline-source-map',
 
     devServer: {
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            'Access-Control-Allow-Methods': '*'
+        },
         contentBase: './dist',
         hot: true
     },
@@ -26,32 +29,11 @@ module.exports = {
 
     plugins: [
         new CleanWebpackPlugin(['dist']),
-        /*new MonacoWebpackPlugin({
-            languages: ['json'],
-            features: [
-                'clipboard',
-                'comment',
-                'contextmenu',
-                'coreCommands',
-                'cursorUndo',
-                'dnd',
-                'find',
-                'format',
-                'hover',
-                'inPlaceReplace',
-                'iPadShowKeyboard',
-                'linesOperations',
-                'links',
-                'parameterHints',
-                'quickCommand',
-                'quickFixCommands',
-                'smartSelect',
-                'suggest',
-                'wordHighlighter',
-                'wordOperations',
-            ],
-        }),*/
         new ManifestPlugin(),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
+        }),
         new HtmlWebpackPlugin({
             title: 'ST Editor',
             inject: 'body',

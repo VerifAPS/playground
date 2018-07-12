@@ -32,43 +32,45 @@
     <div id="editor" class="pure-u-1-2">
     </div>
     <div class="pure-u-1-2">
-        <div class="pc-tab">
-            <input checked="checked" id="tab1" type="radio" name="pct"/>
-            <input id="tab2" type="radio" name="pct"/>
-            <input id="tab3" type="radio" name="pct"/>
-            <nav>
-                <ul>
-                    <li class="tab1">
-                        <label for="tab1">First Tab</label>
-                    </li>
-                    <li class="tab2">
-                        <label for="tab2">Second Tab</label>
-                    </li>
-                    <li class="tab3">
-                        <label for="tab3">Third Tab</label>
-                    </li>
-                </ul>
-            </nav>
-            <section>
-                <div class="tab1">
-                    <h2>First</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus itaque quidem minus
-                        nostrum, voluptatem accusamus aspernatur quia harum ratione, officia laudantium inventore autem
-                        doloribus atque labore numquam non. Hic, animi.</p>
-                </div>
-                <div class="tab2">
-                    <h2>Second</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum nesciunt ipsum dolore error
-                        repellendus officiis aliquid a, vitae reprehenderit, accusantium vero, ad. Obcaecati numquam
-                        sapiente cupiditate. Praesentium eaque, quae error!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis, maiores.</p>
-                </div>
-                <div class="tab3">
-                    <h2>Third</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, nobis culpa rem, vitae earum
-                        aliquid.</p>
-                </div>
-            </section>
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Simple Checks</a></li>
+                <li><a href="#tabs-2">Test Table</a></li>
+                <li><a href="#tabs-3">Regression Verification</a></li>
+                <li><a href="#tabs-4">Aenean lacinia</a></li>
+            </ul>
+            <div id="tabs-1">
+                <form class="pure-form">
+                    <label for="checks">Check:</label>
+                    <select id="checks" class=""></select>
+                    <button id="run-check">Run</button>
+                </form>
+
+                <div id="check-results"></div>
+            </div>
+
+            <div id="tabs-2">
+                <form class="pure-form">
+                    <label>Examples</label>
+                    <select></select>
+                </form>
+                <hr>
+                <div id="tt-editor"></div>
+            </div>
+
+            <div id="tabs-3">
+                <h2>Second</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum nesciunt ipsum dolore error
+                    repellendus officiis aliquid a, vitae reprehenderit, accusantium vero, ad. Obcaecati numquam
+                    sapiente cupiditate. Praesentium eaque, quae error!</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis, maiores.</p>
+            </div>
+
+            <div id="tabs-4">
+                <h2>Third</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, nobis culpa rem, vitae earum
+                    aliquid.</p>
+            </div>
         </div>
     </div>
 </div>

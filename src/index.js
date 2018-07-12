@@ -1,53 +1,72 @@
 // PureCSS styles
-require('purecss/build/pure-min.css');
-require('purecss/build/grids-min.css');
-require('purecss/build/buttons-min.css');
-require('purecss/build/forms-min.css');
+import 'purecss/build/pure-min.css';
+import 'purecss/build/grids-min.css';
+import 'purecss/build/buttons-min.css';
+import 'purecss/build/forms-min.css';
+import 'purecss/build/menus-core-min.css';
+import 'purecss/build/menus-horizontal-min.css';
+import 'purecss/build/menus-dropdown-min.css';
 
 import './style.scss';
+
+// Libraries
+
 import _ from 'lodash';
 import $ from 'jquery';
 
-console.log("Hello World")
+window.jQuery = window.$ = global.$ = global.jQuery = $;
 
 import {getExamples, getExample} from './examples/examples.js'
 
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/monokai.css';
-import CodeMirror from 'codemirror';
-import defineStMode from './stmode.js';
+import 'jquery-ui/ui/widget';
+import 'jquery-ui/ui/widgets/mouse';
+import 'jquery-ui/ui/widgets/sortable';
+import 'jquery-ui/ui/widgets/tabs';
 
-defineStMode();
+import 'jquery-ui/themes/base/all.css';
 
+import './simplecheck';
+import {stCodeEditor} from './steditor';
+import {ttEditor} from './tt/index';
+
+/**
+ * This function calculates the layout.
+ */
 function layoutEditor() {
     let headerHeight = $('#header').height();
     let viewportHeight = $(window).height();
     let editorDiv = $('#editor').width();
-    myCodeMirror.setSize(editorDiv, viewportHeight - headerHeight - 10);
+    stCodeEditor.setSize(editorDiv, viewportHeight - headerHeight - 10);
 }
 
-$(window).resize(layoutEditor);
+function showExamples() {
+    const cboExample = $("#examples");
+    cboExample.bind('change', () => {
+        let selected = cboExample.val();
+        let ex = getExample(selected);
+        stCodeEditor.getDoc().setValue(ex.content);
+    });
 
-let myCodeMirror = CodeMirror(document.getElementById("editor"), {
-    lineNumbers: true,
-    gutter: ["gutter-errors", "gutter-warnings"],
-    mode: "st"
+    const examples = getExamples();
+    console.log(examples)
+    _.forEach(examples, function (value) {
+        let opt = document.createElement("option");
+        opt.text = value.name;
+        cboExample.append(opt)
+    });
+}
+
+
+$(function () {
+    //Activate tabs
+    $("#tabs").tabs();
+
+
+    //layouting editor
+    $(window).resize(layoutEditor);
+    layoutEditor();
+
+    //
+    showExamples()
 });
-layoutEditor();
-
-const cboExample = document.getElementById("examples");
-cboExample.onchange = function (evt) {
-    let selected = cboExample.options[cboExample.selectedIndex].text;
-    let ex = getExample(selected);
-    myCodeMirror.getDoc().setValue(ex.content);
-};
-
-const examples = getExamples();
-console.log(examples)
-_.forEach(examples, function (value) {
-    let opt = document.createElement("option");
-    opt.text = value.name;
-    cboExample.appendChild(opt)
-});
-
 
