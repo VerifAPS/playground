@@ -8,4 +8,4 @@ FROM nginx
 #     && chown -R www:www /www
 #COPY share/nginx.conf /etc/nginx/nginx.conf
 
-COPY dist /usr/share/nginx/html
+ADD dist /usr/share/nginx/html
