@@ -22,6 +22,34 @@ body {
 #editor {
 }
 
+/*
+.tt-syntax-help {
+  &span.s {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  &span.t {
+    text-decoration: underline;
+  }
+}*/
+
+.tt-syntax-help {
+  color: cadetblue;
+  span.s {
+    font-weight: bold;
+    color: black;
+  }
+  span.t {
+    color: black;
+    text-decoration: underline;
+  }
+}
+
+#check-results {
+  font-family: monospace;
+}
+
 .gutter-errors {
   width: 10px;
   background: red;
@@ -77,8 +105,6 @@ body {
     }
   }
 }
-
-
 
 @import "~slickgrid-es6/dist/slick.grid.variables";
 /*
@@ -223,7 +249,6 @@ body {
     float: left;
   }
 
-
   .slick-cell {
     box-sizing: border-box;
     border-style: $grid-border-style;
@@ -272,7 +297,7 @@ body {
   }
 
   .slick-header.ui-state-default {
-    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
   }
 
   .slick-column-name {
@@ -364,7 +389,7 @@ body {
 .interact-placeholder {
   background: red !important;
   display: inline-block;
-  float:left;
+  float: left;
   transform: translate(0px, -100%);
 }
 
@@ -375,7 +400,6 @@ body {
 .interact-can-drop {
   opacity: .9;
 }
-
 
 .scrollbar-fix {
   &::-webkit-scrollbar {
@@ -704,4 +728,46 @@ div.slick-large-editor-text {
       white-space: nowrap;
     }
   }
+}
+
+#tt-render-result {
+  tr.categories th {
+    text-transform: uppercase;
+    font-size: 110%;
+
+    &.input, &.output {
+    //border-right: #ccc solid 1px;
+    }
+  }
+
+  tr.variables {
+    border-bottom: black solid 1px;
+    th {
+      padding: 0.5em;
+    }
+  }
+
+  tbody {
+    td.row-number {
+      font-weight: bold;
+      border-right: 1px black solid;
+    }
+
+    td {
+      font-family: monospace;
+    }
+
+    tr:nth-child(2n) {
+      background: #cdf;
+    }
+
+    tr:nth-child(2n+1) {
+      background: #fef;
+    }
+
+    td.time {
+      text-align: center;
+    }
+  }
+
 }

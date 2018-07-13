@@ -1,15 +1,20 @@
 //http://codemirror.net/demo/simplemode.html
+import {getExample, getExamples} from "../examples/examples";
+
 const REKEYWORDS = /(?:table|row|group|options|g?var|state|input|output|as|omega|>>|function)\b/;
 
 const RE_ST_OPEN_BLOCK = /(?:[{])/;
 const RE_ST_CLOSE_BLOCK = /(?:[}])/;
 
+import {stCodeEditor} from "../steditor";
 
 import 'codemirror/addon/mode/simple';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/monokai.css';
 import CodeMirror from 'codemirror';
 import $ from 'jquery';
+
+import {geturl} from '../config';
 
 function defineTestTableMode() {
     CodeMirror.defineSimpleMode("testtable", {
@@ -59,7 +64,60 @@ function defineTestTableMode() {
     });
 }
 
+function doTTfromInterface() {
+    let code = stCodeEditor.getDoc().getValue();
+    console.log(code);
+    $.post(geturl("geteta/generate"), code, data => {
+        console.log(data);
+        ttEditor.getDoc().setValue(data);
+    }).fail(function () {
+        ttEditor.getDoc().setValue("ERROR!");
+    })
+}
+
+
+function loadTTExamples() {
+    const cboExample = $('#tt-example');
+
+    const getExample = () => {
+        return _.find(ttExamples, it => {
+            return it.name === cboExample.val()
+        });
+    };
+
+    $('#tt-btn-load-code').bind('click', () => {
+        let ex = getExample();
+        stCodeEditor.getDoc().setValue(ex.code);
+    });
+
+    $('#tt-btn-load-testtable').bind('click', () => {
+        let ex = getExample();
+        ttEditor.getDoc().setValue(ex.testtable);
+    });
+
+
+    $.get(geturl("geteta/examples"), data => {
+        ttExamples = data;
+        _.forEach(ttExamples, function (value) {
+            let opt = document.createElement("option");
+            opt.text = value.name;
+            cboExample.append(opt)
+        });
+    });
+}
+
+export let ttExamples;
+
 export let ttEditor;
+
+function doTTRender() {
+    let tt = ttEditor.getDoc().getValue();
+    $.post(geturl("geteta/render"), tt, html => {
+        console.log(html)
+        $('#tt-render-result').html(html);
+    });
+}
+
 $(function () {
     defineTestTableMode();
     ttEditor = CodeMirror(document.getElementById("tt-editor"), {
@@ -68,5 +126,8 @@ $(function () {
         mode: "testtable"
     });
     ttEditor.getDoc().setValue("table name {\n}")
+    $('#btn-tt-generate').bind('click', doTTfromInterface);
+    $('#btn-tt-render').bind('click', doTTRender)
+    loadTTExamples();
 });
 

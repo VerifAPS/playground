@@ -20,13 +20,15 @@ let btnRun;
 let cboChecks;
 let resultDiv;
 
+import {stCodeEditor} from "./steditor";
+
 function runCurrentCheck(evt) {
     let v = cboChecks.val();
     let item = _.find(SIMPLE_CHECK, item => item.id = v);
     console.log(item);
 
 
-    let code = "";
+    let code = stCodeEditor.getDoc().getValue();
 
     $.post(item.url, code, function (data) {
         resultDiv.html(data);

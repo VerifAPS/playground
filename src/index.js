@@ -22,6 +22,7 @@ import 'jquery-ui/ui/widget';
 import 'jquery-ui/ui/widgets/mouse';
 import 'jquery-ui/ui/widgets/sortable';
 import 'jquery-ui/ui/widgets/tabs';
+import 'jquery-ui/ui/widgets/accordion';
 
 import 'jquery-ui/themes/base/all.css';
 
@@ -56,10 +57,19 @@ function showExamples() {
     });
 }
 
+function toggleDiv(id) {
+    $(id).toggle
+}
+
 
 $(function () {
     //Activate tabs
     $("#tabs").tabs();
+
+    $("#tt-accordion").accordion({
+        heightStyle: "content",
+        collapsible: true
+    });
 
 
     //layouting editor
