@@ -36,9 +36,8 @@ jobs:
       # run tests!
       - run: webpack --mode production
 
-      - run:
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker build -t verifaps-frontend .
-        - docker images
-        - docker tag verifaps-frontend verifaps/verifaps-frontend
-        - docker push verifaps/verifaps-frontend
+      - run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - run: docker build -t verifaps-frontend .
+      - run: docker images
+      - run: docker tag verifaps-frontend verifaps/verifaps-frontend
+      - run: docker push verifaps/verifaps-frontend
