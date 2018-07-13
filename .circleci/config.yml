@@ -36,7 +36,8 @@ jobs:
       # build!
       - run: yarn run build
 
-      - run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+     # - run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - run: docker login -u "$DOCKER_USERNAME"-p "$DOCKER_PASSWORD"
       - run: docker build -t verifaps-frontend .
       - run: docker images
       - run: docker tag verifaps-frontend verifaps/verifaps-frontend
