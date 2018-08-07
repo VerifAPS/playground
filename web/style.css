@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  padding: 0; }
+
+.header {
+  border-bottom: 1px solid #ccc;
+  background: aliceblue; }
+  .header h1 {
+    margin: 0;
+    padding: .5em; }
+  .header form {
+    padding: .5em; }
+
+/*
+.tt-syntax-help {
+  &span.s {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  &span.t {
+    text-decoration: underline;
+  }
+}*/
+.tt-syntax-help {
+  color: cadetblue; }
+  .tt-syntax-help span.s {
+    font-weight: bold;
+    color: black; }
+  .tt-syntax-help span.t {
+    color: black;
+    text-decoration: underline; }
+
+#check-results {
+  font-family: monospace; }
+
+.gutter-errors {
+  width: 10px;
+  background: red; }
+
+.gutter-warnings {
+  width: 10px;
+  background: red; }
+
+/* Visual Styles */
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+body {
+  -webkit-font-smoothing: antialiased; }
+
+.pc-tab {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto; }
+  .pc-tab ul {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    .pc-tab ul li label {
+      font-family: "Raleway";
+      float: left;
+      padding: 15px 25px;
+      border: 1px solid #ddd;
+      border-bottom: 0;
+      background: #eeeeee;
+      color: #444; }
+      .pc-tab ul li label:hover {
+        background: #dddddd; }
+      .pc-tab ul li label:active {
+        background: #ffffff; }
+    .pc-tab ul li:not(:last-child) label {
+      border-right-width: 0; }
+
+#tt-render-result tr.categories th {
+  text-transform: uppercase;
+  font-size: 110%; }
+#tt-render-result tr.variables {
+  border-bottom: black solid 1px; }
+  #tt-render-result tr.variables th {
+    padding: 0.5em; }
+#tt-render-result tbody td.row-number {
+  font-weight: bold;
+  border-right: 1px black solid; }
+#tt-render-result tbody td {
+  font-family: monospace; }
+#tt-render-result tbody tr:nth-child(2n) {
+  background: #cdf; }
+#tt-render-result tbody tr:nth-child(2n+1) {
+  background: #fef; }
+#tt-render-result tbody td.time {
+  text-align: center; }
